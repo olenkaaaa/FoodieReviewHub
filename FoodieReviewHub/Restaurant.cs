@@ -10,17 +10,60 @@
 
         public string Name { get; private set; }
 
-        public int Stars
-        {
-            get
-            { 
-                return this.stars.Sum();
-            }
-        }
+        //public int Stars
+        //{
+        //    get
+        //    { 
+        //        return this.stars.Sum();
+        //    }
+        //}
 
         public void AddStar(int star)
         {
-            this.stars.Add(star);
+            if(star >= 1 && star <= 5)
+            {
+                this.stars.Add(star);
+            }
+            else
+            {
+                Console.WriteLine("Invalid star value");
+            }
+        }
+
+        public void AddStar(string star)
+        {
+            if(int.TryParse(star, out int result))
+            {
+                this.AddStar(result);
+            }
+            else
+            {
+                Console.WriteLine("String is not float");
+            }
+        }
+
+        public void AddStar(float star)
+        {
+            int floatToInt = (int)star;
+            this.AddStar(floatToInt);
+        }
+
+        public void AddStar(double star)
+        {
+            int doubleToInt = (int)star;
+            this.AddStar(doubleToInt);
+        }
+
+        public void AddStar(long star)
+        {
+            int longToInt = (int)star;
+            this.AddStar(longToInt);
+        }
+
+        public void AddStar(decimal star)
+        {
+            int decimalToInt = (int)star;
+            this.AddStar(decimalToInt);
         }
 
         public Statistics GetStatistics()

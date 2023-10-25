@@ -29,8 +29,8 @@
 
 
 var restaurant1 = new Restaurant("Wodnik");
-restaurant1.AddStar(1);
-restaurant1.AddStar(3);
+restaurant1.AddStar(6);
+restaurant1.AddStar(-1);
 restaurant1.AddStar(2);
 restaurant1.AddStar(1);
 var statistics1 = restaurant1.GetStatistics();
