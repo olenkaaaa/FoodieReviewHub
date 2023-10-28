@@ -10,14 +10,6 @@
 
         public string Name { get; private set; }
 
-        //public int Stars
-        //{
-        //    get
-        //    { 
-        //        return this.stars.Sum();
-        //    }
-        //}
-
         public void AddStar(int star)
         {
             if(star >= 1 && star <= 5)
@@ -75,9 +67,12 @@
 
             foreach(var star in this.stars)
             {
-                statistics.Max = Math.Max(statistics.Max, star);
-                statistics.Min = Math.Min(statistics.Min, star);
-                statistics.Average += star;
+                if(star >= 1)
+                {
+                    statistics.Max = Math.Max(statistics.Max, star);
+                    statistics.Min = Math.Min(statistics.Min, star);
+                    statistics.Average += star;
+                }
             }
 
             statistics.Average /= this.stars.Count;
