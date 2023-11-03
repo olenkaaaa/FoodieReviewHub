@@ -1,14 +1,12 @@
 ﻿namespace FoodieReviewHub
 {
-    public class Restaurant
+    public class Restaurant : Business
     {
         private List<int> stars = new List<int>();
         public Restaurant(string name)
+            : base(name)
         {
-            this.Name = name;
         }
-
-        public string Name { get; private set; }
 
         public void AddStar(int star)
         {
@@ -18,7 +16,7 @@
             }
             else
             {
-                Console.WriteLine("Invalid star value");
+                throw new Exception("Invalid star value");
             }
         }
 
@@ -30,7 +28,7 @@
             }
             else
             {
-                Console.WriteLine("String is not float");
+                throw new Exception("String is not float");
             }
         }
 
@@ -58,6 +56,32 @@
             this.AddStar(decimalToInt);
         }
 
+        public void AddStar(char star)
+        {
+            switch (star)
+            {
+                case 'A':
+                case 'a':
+                    this.stars.Add(5);
+                    break;
+                case 'B':
+                    this.stars.Add(4);
+                    break;
+                case 'C':
+                    this.stars.Add(3);
+                    break;
+                case 'D':
+                    this.stars.Add(2);
+                    break;
+                case 'E':
+                    this.stars.Add(1);
+                    break;
+                default:
+                    throw new Exception("Wrong Letter");
+                    break;
+            }
+        }
+
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();
@@ -76,6 +100,26 @@
             }
 
             statistics.Average /= this.stars.Count;
+
+            switch (statistics.Average)
+            {
+                case var average when average > 4:
+                    statistics.AverageLetter = 'A';
+                    break;
+                case var average when average > 3:
+                    statistics.AverageLetter = 'B';
+                    break;
+                case var average when average > 2:
+                    statistics.AverageLetter = 'C';
+                    break;
+                case var average when average > 1:
+                    statistics.AverageLetter = 'D';
+                    break;
+                default:
+                    statistics.AverageLetter = 'E';
+                    break;
+            }
+
 
             return statistics;
         }

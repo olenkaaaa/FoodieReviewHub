@@ -42,5 +42,18 @@ namespace FoodieReviewHubTests
 
             Assert.AreEqual(Math.Round(4.00, 2), Math.Round(statistics.Average, 2));
         }
+
+        [Test]
+        public void WhenGetStatisticsCalled_ShouldReturnCorrectAverageLetter()
+        {
+            var restaurant = new Restaurant("Nolio");
+            restaurant.AddStar(3);
+            restaurant.AddStar('B');
+            restaurant.AddStar('a');
+            restaurant.AddStar(4);
+            var statistics = restaurant.GetStatistics();
+
+            Assert.AreEqual('B', statistics.AverageLetter);
+        }
     }
 }

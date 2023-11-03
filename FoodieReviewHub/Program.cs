@@ -2,7 +2,6 @@
 
 Console.WriteLine("Welcome to the Restaurant evaluation program FoodieReviewHub");
 Console.WriteLine("============================================================");
-Console.WriteLine("Rate the restaurant from the last few stays. Enter the star number from 1 do 5.");
 Console.WriteLine();
 
 var restaurant = new Restaurant("Nolio");
@@ -15,7 +14,14 @@ while(true)
     {
         break;
     }
-    restaurant.AddStar(input);
+    try
+    {
+        restaurant.AddStar(input);
+    }
+    catch(Exception e)
+    {
+        Console.WriteLine($"Exception catched: {e.Message}");
+    }
 }
 var statistics = restaurant.GetStatistics();
 Console.WriteLine($"Average: {statistics.Average:N2}");
